@@ -1,0 +1,77 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- モバイル用 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello_react</title>
+    <style>
+        .title {
+            background-color: orange;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- コンテナを準備 -->
+    <div id="test"></div>
+
+    <!-- Reactのコアを導入 グローバルでReactが使える-->
+    <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
+
+    <!-- React domを導入　ReactがDomを操作できる　グローバルでReactDOMが使える -->
+    <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
+
+    <!-- Babelを導入 jsxをjsに変換するため-->
+    <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
+
+    <!-- タイプがBabelである必要がある -->
+    <script type="text/babel">
+
+
+        const myId = 'aTgUiGu';
+        const myData = 'Hello, rEaCt';
+
+        // VDOM作成
+        const VDOM = (
+
+            <div>
+                <h2 className="title" id={myId.toLocaleLowerCase()}>
+                    <span style={{ color: 'white', fontSize: '29px' }}>
+                        {myData.toLocaleLowerCase()}
+                    </span>
+                </h2>
+                <h2 className="title" id={myId.toUpperCase() + '2'}>
+                    <span style={{ color: 'white', fontSize: '29px' }}>
+                        {myData.toLocaleLowerCase()}
+                    </span>
+                </h2>
+                <input type="text" />
+                <good>123</good>
+                <Good>123</Good>
+            </div>
+
+        )
+
+        // レンダリング
+        ReactDOM.render(VDOM, document.getElementById('test'))
+
+        /*
+            VDOM定義するときはクォーテーションはいらない
+            JSXのtagの中でJSを使うときは{}を利用する
+            JSXの中でstyleの指定はclassではなく、classNameを利用
+            内部でStyleを定期するときは　style={{ key : value }}で定義する
+            VDOMは必ず一個のRootタグに含まれる
+            JSXのtagは必ず閉じる
+            JSXタグの頭文字
+                小文字→HTMLの中の同名のElementに変換される。HTMLの中に対応するElementがなければエラーが発生
+                大文字→ReactのComponentに変換される。Reactが同名のComponentにレンダリングされる。同名のComponentがなければエラー
+        */
+
+
+    </script>
+</body>
+
+</html>
