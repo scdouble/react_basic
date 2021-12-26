@@ -1,0 +1,40 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- モバイル用 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello_react</title>
+
+</head>
+
+<body>
+    <!-- コンテナを準備 -->
+    <div id="test"></div>
+
+    <!-- Reactのコアを導入 グローバルでReactが使える-->
+    <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
+
+    <!-- React domを導入　ReactがDomを操作できる　グローバルでReactDOMが使える -->
+    <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
+
+    <!-- Babelを導入 jsxをjsに変換するため-->
+    <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
+
+    <!-- タイプがBabelである必要がある -->
+    <script type="text/babel">
+
+        // 関数コンポーネントを作成する
+        function Demo(){
+            console.log(this); // ここのThisは	Undefined。理由は Babel変換後はuse strict を使っているので
+            return <h2>関数型コンポーネント、簡単なコンポーネントを作成するときに使う</h2>
+        }
+
+        // Componentをレンダリング
+        ReactDOM.render(<Demo/ >,document.getElementById('test'))
+
+    </script>
+</body>
+
+</html>
