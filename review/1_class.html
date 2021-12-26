@@ -1,0 +1,69 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <script type="text/javascript">
+    // person　クラスを定義する
+    class Person {
+      // コンストラクター
+      constructor(name, age) {
+        // コンストラクターのThisはークラスのInstance
+        this.name = name;
+        this.age = age;
+      }
+
+      // Method
+      speak() {
+        // speakメソッド本体はクラスのPrototypeにある Instanceが使う
+        // PersonのInstanceを通してspeakを使うときは、speakの中のthisはPersonのInstance
+        console.log(`I am ${this.name}, my age is ${this.age}`)
+      }
+
+    }
+
+
+    // student クラスを定義してPersonを継承する
+    class Student extends Person {
+      constructor(name, age, grade) {
+        super(name, age)
+        this.grade = grade
+      }
+
+      // Override
+      speak() {
+        console.log(`I am ${this.name}, my age is ${this.age}, I am a ${this.grade} student`)
+      }
+
+      //
+      study() {
+        // studyメソッド本体はクラスのPrototypeにある Instanceが使う
+        // studentのInstanceを通してstudyを使うときは、studyの中のthisはPersonのInstance
+        console.log('Study very hard')
+      }
+    }
+    // Instance を作る
+    // const p1 = new Person('tom',18);
+    // const p2 = new Person('jerry',19);
+
+    // console.log(p1);
+    // console.log(p2);
+    // p1.speak();
+    // p2.speak();
+
+    const s1 = new Student('xiaozhang', 15, 'high school');
+    console.log(s1)
+    s1.speak();
+
+
+  </script>
+
+</body>
+
+</html>

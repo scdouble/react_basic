@@ -1,35 +1,35 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- モバイル用 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hello_react</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- モバイル用 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hello_react</title>
 </head>
 
 <body>
-    <!-- コンテナを準備 -->
-    <div id="test"></div>
+  <!-- コンテナを準備 -->
+  <div id="test"></div>
 
-    <!-- Reactのコアを導入 グローバルでReactが使える-->
-    <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
+  <!-- Reactのコアを導入 グローバルでReactが使える-->
+  <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
 
-    <!-- React domを導入　ReactがDomを操作できる　グローバルでReactDOMが使える -->
-    <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
+  <!-- React domを導入　ReactがDomを操作できる　グローバルでReactDOMが使える -->
+  <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
 
-    <!-- Babelを導入 jsxをjsに変換するため--> 
-    <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
+  <!-- Babelを導入 jsxをjsに変換するため-->
+  <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
 
-    <!-- タイプがBabelである必要がある -->
-    <script type="text/babel">
+  <!-- タイプがBabelである必要がある -->
+  <script type="text/babel">
 
-        // バーチャルDOMを作成
-        const VDOM = <h1> Hello, React </h1> //クォーテーションはいらない。これは文字列ではない。バーチャルDOMである
+    // バーチャルDOMを作成
+    const VDOM = <h1> Hello, React </h1> //クォーテーションはいらない。これは文字列ではない。バーチャルDOMである
 
-        // バーチャルDOMを画面にレンダリング
-        ReactDOM.render(VDOM, document.getElementById('test'));
-    </script>
+    // バーチャルDOMを画面にレンダリング
+    ReactDOM.render(VDOM, document.getElementById('test'));
+  </script>
 
 
 </body>

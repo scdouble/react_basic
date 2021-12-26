@@ -25,14 +25,18 @@
   <!-- タイプがBabelである必要がある -->
   <script type="text/babel">
 
-    // 関数コンポーネントを作成する
-    function Demo() {
-      console.log(this); // ここのThisは	Undefined。理由は Babel変換後はuse strict を使っているので
-      return <h2>関数型コンポーネント、簡単なコンポーネントを作成するときに使う</h2>
-    }
+    // クラス型のコンポーネントを作成
+    class MyComponent extends React.Component {
+      render() {
+        // renderはどこにある？　→ MyComponentのPrototype
+        // renderのThisは誰？→ MyComponentのインスタンス　 <=> MyComponentのコンポーネントインスタンス
+        console.log(this);
+        return <h2>クラス型コンポーネント、複雑なコンポーネントを作成するときに使う</h2>
+      }
 
-    // Componentをレンダリング
-    ReactDOM.render(<Demo />, document.getElementById('test'))
+    }
+    // レンダリング
+    ReactDOM.render(<MyComponent />, document.getElementById('test'))
 
   </script>
 </body>
