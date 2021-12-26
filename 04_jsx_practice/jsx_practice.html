@@ -1,0 +1,54 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- モバイル用 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>hello_react</title>
+
+</head>
+
+<body>
+    <!-- コンテナを準備 -->
+    <div id="test"></div>
+
+    <!-- Reactのコアを導入 グローバルでReactが使える-->
+    <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
+
+    <!-- React domを導入　ReactがDomを操作できる　グローバルでReactDOMが使える -->
+    <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
+
+    <!-- Babelを導入 jsxをjsに変換するため-->
+    <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
+
+    <!-- タイプがBabelである必要がある -->
+    <script type="text/babel">
+
+        // Mock Data 
+        const data = ['Angular', 'React', 'Vue'];
+        // const obj = {
+        //     name1: 'Angular', name2: 'React', name3: 'Vue'
+        // };
+
+        const VDOM = (
+            <div>
+                <h1> Front end js framework </h1>
+                <ul>
+                    {
+                        data.map((item, index) => {
+                            return <li key={index}> {item} </li>
+                        })
+                    }
+                </ul>
+            </div>
+        );
+
+        // レンダリング
+        ReactDOM.render(VDOM, document.getElementById('test'))
+
+
+    </script>
+</body>
+
+</html>
