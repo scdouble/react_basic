@@ -34,6 +34,11 @@
   <script type="text/babel">
 
     class Person extends React.Component {
+
+      constructor(props){
+        console.log(props);
+        super(props)
+      }
       // 型と必須の設定
       static propTypes = {
         name: PropTypes.string.isRequired,
@@ -43,7 +48,7 @@
       }
       // デフォルト値の設定
       static defaultProps = {
-        sex: "none",
+        sex: "male",
         age: 18
       }
 
@@ -67,16 +72,8 @@
     }
 
     // レンダリング
-    ReactDOM.render(<Person name="tom" speak={speak} />, document.getElementById("test1"))
-    ReactDOM.render(<Person name="jerry" age={19} sex="female" />, document.getElementById("test2"))
+    ReactDOM.render(<Person name="jerry" />, document.getElementById("test2"))
 
-    const p = { name: 'luke', age: 18, sex: 'female' }
-    // ReactDOM.render(<Person name= "liu" age="18" sex="female" />, document.getElementById("test3"))
-    ReactDOM.render(<Person {...p} />, document.getElementById("test3"))
-
-    function speak() {
-      console.log("I am speaking!!")
-    }
 
   </script>
 </body>
