@@ -26,6 +26,10 @@
   <!-- Babelを導入 jsxをjsに変換するため-->
   <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
 
+
+  <!-- proptypes 導入 -->
+  <script type="text/javascript" src="../js/17.0.1/prop-types.js"></script>
+
   <!-- タイプがBabelである必要がある -->
   <script type="text/babel">
 
@@ -34,22 +38,42 @@
       render() {
        // console.log(this);
         const { name, age, sex } = this.props;
+        // propsはReadonly
+        // this.props.name = 'jack' // Error
         return (
           <ul>
             <li>Name: {name}</li>
             <li>Sex: {sex}</li>
             <li>Age: {age+1} </li>
-
           </ul>
         )
       }
     }
 
-    ReactDOM.render(<Person name="tom" age={19} sex="female" />, document.getElementById("test1"))
-    ReactDOM.render(<Person name="jerry" age={18} sex="female" />, document.getElementById("test2"))
-    const p = { name: 'liu', age: 18, sex: 'female' }
+    // 型と必須の設定
+    Person.propTypes = {
+      name: PropTypes.string.isRequired,
+      sex: PropTypes.string,
+      age: PropTypes.number,
+      speak:PropTypes.func
+    }
+    // デフォルト値の設定
+    Person.defaultProps = {
+      sex:"none",
+      age: 18
+    }
+
+    // レンダリング
+    ReactDOM.render(<Person name="tom" speak={speak} />, document.getElementById("test1"))
+    ReactDOM.render(<Person name="jerry" age={19} sex="female" />, document.getElementById("test2"))
+
+    const p = { name: 'luke', age: 18, sex: 'female' }
     // ReactDOM.render(<Person name= "liu" age="18" sex="female" />, document.getElementById("test3"))
     ReactDOM.render(<Person {...p} />, document.getElementById("test3"))
+
+    function speak(){
+      console.log("I am speaking!!")
+    }
 
   </script>
 </body>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script type="text/javascript">
+    let arr1 = [1, 3, 5, 7, 9]
+    let arr2 = [2, 4, 6, 8, 10]
+    console.log(...arr1); // Arrayを展開
+    // console.log(arr1);
+
+    let arr3 = [...arr1, ...arr2] // Arrayを連結
+    console.log(arr3)
+
+    function sum(...numbers) { // 関数で利用する
+      console.log('@', numbers)
+
+      const result = numbers.reduce((preValue, currentValue) => {
+        return preValue + currentValue
+      })
+
+      return result
+    }
+    console.log(sum(1, 2, 3, 4))
+
+    // Objectは展開できない
+    let person = { name: "tom", age: 18 };
+    //  console.log(...person) //  TypeError: Found non-callable @@iterator
+    let person2 = { ...person };// 	Objectを複製
+
+    // Objectを複製して属性を修正（合併）
+    let person3 = {...person, name:'jack'}
+    console.log(person3)
+
+  </script>
+</body>
+
+</html>
