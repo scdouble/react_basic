@@ -1,0 +1,67 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- モバイル用 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hello_react</title>
+
+</head>
+
+<body>
+  <!-- コンテナを準備 -->
+  <div id="test1"></div>
+  <div id="test2"></div>
+  <div id="test3"></div>
+
+
+
+  <!-- Reactのコアを導入 グローバルでReactが使える-->
+  <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
+
+  <!-- React domを導入　ReactがDomを操作できる　グローバルでReactDOMが使える -->
+  <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
+
+  <!-- Babelを導入 jsxをjsに変換するため-->
+  <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
+
+
+  <!-- proptypes 導入 -->
+  <script type="text/javascript" src="../js/17.0.1/prop-types.js"></script>
+
+  <!-- タイプがBabelである必要がある -->
+  <script type="text/babel">
+
+    function Person(props) {
+      console.log(props)
+      const { name, age, sex } = props
+      return (
+        <ul>
+          <li>Name: {name} </li>
+          <li>Sex: {sex} </li>
+          <li>Age: {age} </li>
+        </ul>
+      )
+    }
+
+    // 型と必須の設定
+    Person.propTypes = {
+      name: PropTypes.string.isRequired,
+      sex: PropTypes.string,
+      age: PropTypes.number,
+      speak: PropTypes.func
+    }
+    // デフォルト値の設定
+    Person.defaultProps = {
+      sex: "male",
+      age: 18
+    }
+    // レンダリング
+    ReactDOM.render(<Person name="jerry" age={19} />, document.getElementById("test2"))
+
+
+  </script>
+</body>
+
+</html>
