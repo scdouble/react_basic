@@ -1,0 +1,69 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- モバイル用 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hello_react</title>
+
+</head>
+
+<body>
+  <!-- コンテナを準備 -->
+  <div id="test"></div>
+
+  <!-- Reactのコアを導入 グローバルでReactが使える-->
+  <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
+
+  <!-- React domを導入　ReactがDomを操作できる　グローバルでReactDOMが使える -->
+  <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
+
+  <!-- Babelを導入 jsxをjsに変換するため-->
+  <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
+
+  <!-- proptypes 導入 -->
+  <script type="text/javascript" src="../js/17.0.1/prop-types.js"></script>
+
+  <!-- タイプがBabelである必要がある -->
+  <script type="text/babel">
+
+    class Demo extends React.Component {
+
+      //左側のInputでデータを表示
+      showData = () => {
+        alert(this.input1.value)
+      }
+
+      //右側のInputでデータを表示
+      showData2 = () => {
+        alert(this.input2.value)
+
+      }
+
+      render() {
+        // console.log(this);
+        const { name, age, sex } = this.props;
+        // propsはReadonly
+        // this.props.name = 'jack' // Error
+        return (
+
+          <div>
+            <input ref={(currentNode) => { this.input1 = currentNode }} type="text" placeholder="ボタンをクリックしてデータを表示" />
+            <button onClick={this.showData}>クリックして左側のデータを表示</button>
+            <input ref={currentNode => this.input2 = currentNode} onBlur={this.showData2} type="text" placeholder="フォーカスアウトでデータを表示" />
+          </div>
+
+        )
+      }
+
+    }
+
+    // レンダリング
+    ReactDOM.render(<Demo />, document.getElementById("test"))
+
+
+  </script>
+</body>
+
+</html>
