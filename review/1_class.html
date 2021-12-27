@@ -48,6 +48,18 @@
         console.log('Study very hard')
       }
     }
+
+    class Car {
+      constructor(name, price){
+        this.name = name
+        this.price = price
+       //  this.wheel = 4
+      }
+      // クラスの中で直接値を付与できる
+      // 下のコードの意味はCarのInstanceにaの値を追加して、1を付与する
+      a = 1
+      wheel = 4
+    }
     // Instance を作る
     // const p1 = new Person('tom',18);
     // const p2 = new Person('jerry',19);
@@ -57,6 +69,11 @@
     // p1.speak();
     // p2.speak();
 
+    const c1 = new Car("Benzc63", 199)
+    const c2 = new Car("BMW", 199)
+
+    console.log(c1)
+    console.log(c2)
     const s1 = new Student('xiaozhang', 15, 'high school');
     console.log(s1)
     s1.speak();
