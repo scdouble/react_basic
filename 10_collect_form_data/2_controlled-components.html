@@ -1,0 +1,78 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- モバイル用 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>uncontrolled-components</title>
+
+</head>
+
+<body>
+  <!-- コンテナを準備 -->
+  <div id="test"></div>
+
+  <!-- Reactのコアを導入 グローバルでReactが使える-->
+  <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
+
+  <!-- React domを導入　ReactがDomを操作できる　グローバルでReactDOMが使える -->
+  <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
+
+  <!-- Babelを導入 jsxをjsに変換するため-->
+  <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
+
+  <!-- proptypes 導入 -->
+  <script type="text/javascript" src="../js/17.0.1/prop-types.js"></script>
+
+  <!-- タイプがBabelである必要がある -->
+  <script type="text/babel">
+
+    class Login extends React.Component {
+
+      // stateを初期化
+      state = {
+        userid: '',
+        password: ''
+      }
+
+      // UserIdをステートに保存
+      saveUserId = (event) => {
+        // console.log(event.target.value)
+        this.setState({ userid: event.target.value })
+      }
+
+      // passwordをステートに保存
+      savePassword = (event) => {
+        // console.log(event.target.value)
+        this.setState({ password: event.target.value })
+      }
+
+      // FormSubmit時のコールバック
+      handleSubmit = (event) => {
+        event.preventDefault()
+        const {userid, password } = this.state
+        alert(`Input User id:${userid.value}, Input password:${password.value}`)
+
+      }
+
+      render() {
+        return (
+          <form action="http://localhost.com" onSubmit={this.handleSubmit}>
+            UserId:  <input onChange={this.saveUserId} type="text" placeholder="UserId" name="userid" />
+            Password: <input onChange={this.savePassword} type="password" placeholder="Password" name="password" />
+            <button>Login</button>
+          </form>
+        )
+      }
+
+    }
+
+    // レンダリング
+    ReactDOM.render(<Login />, document.getElementById("test"))
+
+
+  </script>
+</body>
+
+</html>
