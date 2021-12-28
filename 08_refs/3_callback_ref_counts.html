@@ -1,0 +1,78 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- モバイル用 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>hello_react</title>
+
+</head>
+
+<body>
+  <!-- コンテナを準備 -->
+  <div id="test"></div>
+
+  <!-- Reactのコアを導入 グローバルでReactが使える-->
+  <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
+
+  <!-- React domを導入　ReactがDomを操作できる　グローバルでReactDOMが使える -->
+  <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
+
+  <!-- Babelを導入 jsxをjsに変換するため-->
+  <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
+
+  <!-- proptypes 導入 -->
+  <script type="text/javascript" src="../js/17.0.1/prop-types.js"></script>
+
+  <!-- タイプがBabelである必要がある -->
+  <script type="text/babel">
+
+    class Demo extends React.Component {
+
+      state = { isHot: true }
+
+      showInfo = () => {
+        const { input1 } = this
+        alert(input1.value)
+      }
+
+      changeWeather = () => {
+        const { isHot } = this.state;
+        this.setState({ isHot: !isHot })
+      }
+
+      //自身上的saveInput
+      // クラス内のバインドされたメソッドとして定義する
+      saveInput = (currentNode) => {
+        // コンポーネントのインスタンスにHTMLエレメントを代入
+        this.input1 = currentNode;
+        console.log("@", currentNode)
+
+      }
+      render() {
+        return (
+
+          <div>
+            <h2>今日は{this.state.isHot ? '暑い' : "涼しい"}</h2>
+            { /* ref コールバックがインライン関数として定義されている */}
+            { /* <input ref={(c) => { this.input1 = c; console.log("@",c)}} type="text" /> */}
+            <input ref={this.saveInput} type="text" />
+            <button onClick={this.showInfo}>クリックしてデータを表示</button>
+            <button onClick={this.changeWeather}>クリックして天気を切り替える</button>
+
+          </div>
+
+        )
+      }
+
+    }
+
+    // レンダリング
+    ReactDOM.render(<Demo />, document.getElementById("test"))
+
+
+  </script>
+</body>
+
+</html>
