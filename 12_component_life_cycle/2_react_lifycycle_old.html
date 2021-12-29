@@ -1,0 +1,116 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- モバイル用 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>life cycle old</title>
+
+</head>
+
+<body>
+  <!-- コンテナを準備 -->
+  <div id="test"></div>
+
+  <!-- Reactのコアを導入 グローバルでReactが使える-->
+  <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
+
+  <!-- React domを導入　ReactがDomを操作できる　グローバルでReactDOMが使える -->
+  <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
+
+  <!-- Babelを導入 jsxをjsに変換するため-->
+  <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
+
+  <!-- proptypes 導入 -->
+  <script type="text/javascript" src="../js/17.0.1/prop-types.js"></script>
+
+  <!-- タイプがBabelである必要がある -->
+  <script type="text/babel">
+
+    class Count extends React.Component {
+
+      constructor(props) {
+        console.log("count-constructor")
+        super(props)
+        this.state = { count: 0 }
+      }
+
+      // Stateを初期化
+      //  state = { count: 0 }
+
+
+      handleClick = () => {
+        let count = this.state.count
+        count += 1
+        this.setState({ count })
+      }
+
+      death = () => {
+        ReactDOM.unmountComponentAtNode(document.getElementById("test"))
+      }
+
+
+      // Force Update Component ボタンのコールバック
+      force = () => {
+        this.forceUpdate()
+      }
+
+
+
+      // コンポーネントがMountされるまえに実行
+      componentWillMount() {
+        console.log("count-componentWillMount")
+      }
+
+      // コンポーネントがMountされた後に実行
+      componentDidMount() {
+        console.log("count-componentDidMount")
+      }
+
+      // コンポーネントがUnMountされる前に実行
+      componentWillUnmount() {
+        console.log("count-componentWillUnmount")
+      }
+
+      shouldComponentUpdate() {
+        console.log("count-shouldComponentUpdate")
+        return true
+      }
+
+      // コンポーネントがUnMountされる前に実行
+      componentWillUpdate() {
+        console.log("count-componentWillUpdate")
+      }
+
+      // コンポーネントがUnMountされる前に実行
+      componentDidUpdate() {
+        console.log("count-componentDidUpdate")
+      }
+
+      render() {
+        console.log("count-render")
+
+        const { count } = this.state
+        return (
+          <div>
+            <h2 style={{ opacity: this.state.opacity }}>Sum: {count}</h2>
+            <button onClick={this.handleClick}>Click +1</button>
+            <button onClick={this.death}>Unmount Component</button>
+            <button onClick={this.force}>Force Update Component</button>
+
+
+          </div>
+        )
+      }
+
+    }
+
+    // レンダリング
+    ReactDOM.render(<Count />, document.getElementById("test"))
+
+
+  </script>
+</body>
+
+</html>

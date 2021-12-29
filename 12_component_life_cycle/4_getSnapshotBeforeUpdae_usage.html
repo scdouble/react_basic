@@ -1,0 +1,87 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    .list {
+      width: 200px;
+      height: 150px;
+      background-color: skyblue;
+      overflow: auto;
+    }
+
+    .news {
+      height: 30px;
+    }
+  </style>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- モバイル用 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>life cycle old</title>
+
+</head>
+
+<body>
+  <!-- コンテナを準備 -->
+  <div id="test"></div>
+
+  <!-- Reactのコアを導入 グローバルでReactが使える-->
+  <script type="text/javascript" src="../js/17.0.1/react.development.js"></script>
+
+  <!-- React domを導入　ReactがDomを操作できる　グローバルでReactDOMが使える -->
+  <script type="text/javascript" src="../js/17.0.1/react-dom.development.js"></script>
+
+  <!-- Babelを導入 jsxをjsに変換するため-->
+  <script type="text/javascript" src="../js/17.0.1/babel.min.js"></script>
+
+  <!-- proptypes 導入 -->
+  <script type="text/javascript" src="../js/17.0.1/prop-types.js"></script>
+
+  <!-- タイプがBabelである必要がある -->
+  <script type="text/babel">
+
+    class NewsList extends React.Component {
+
+
+      state = { newsArr: [] }
+
+      componentDidMount() {
+        setInterval(() => {
+          const { newsArr } = this.state
+
+          const news = 'News' + (newsArr.length + 1)
+
+          this.setState({ newsArr: [news, ...newsArr] })
+        }, 1000)
+      }
+
+      getSnapshotBeforeUpdate() {
+        return this.refs.list.scrollHeight
+
+      }
+      componentDidUpdate(prevProps, prevState, height) {
+        this.refs.list.scrollTop += this.refs.list.scrollHeight - height
+      }
+
+      render() {
+        return (
+          <div className="list" ref="list">
+            {
+              this.state.newsArr.map((n, index) => {
+                return <div className="news" key={index}>{n}</div>
+              })
+            }
+          </div>
+        )
+      }
+
+    }
+
+    // レンダリング
+    ReactDOM.render(<NewsList />, document.getElementById("test"))
+
+
+  </script>
+</body>
+
+</html>

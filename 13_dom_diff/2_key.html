@@ -1,0 +1,131 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- モバイル用 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>key</title>
+
+</head>
+
+<body>
+  <!-- コンテナを準備 -->
+  <div id="test"></div>
+
+  <!-- Reactのコアを導入 グローバルでReactが使える-->
+  <script type="text/javascript" src="../js/react.development.js"></script>
+
+  <!-- React domを導入　ReactがDomを操作できる　グローバルでReactDOMが使える -->
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+
+  <!-- Babelを導入 jsxをjsに変換するため-->
+  <script type="text/javascript" src="../js/babel.min.js"></script>
+
+  <!-- proptypes 導入 -->
+  <script type="text/javascript" src="../js/prop-types.js"></script>
+
+  <!-- タイプがBabelである必要がある -->
+  <script type="text/babel">
+
+    /* mapのindexをKeyとする
+          初期データ：　　
+              { id: 1, name: "tom", age: 18 },
+              { id: 2, name: "jerry", age: 19 }
+
+          初期のVDOM：（後にReactによって　RealDOMに変換されて画面に表示される）
+              <li key=0>tom---18</li>
+              <li key=1>jerry---19</li>
+
+          更新後のデータ
+              { id: 3, name: "mary", age: 20 }
+              { id: 1, name: "tom", age: 18 },
+              { id: 2, name: "jerry", age: 19 }
+
+          更新後のVDOM：
+              <li key=0>mary---20</li>
+              <li key=1>tom---18</li>
+              <li key=2>jerry---19</li>
+
+    */
+
+    /* idをKeyとする
+          初期データ：　　
+              { id: 1, name: "tom", age: 18 },
+              { id: 2, name: "jerry", age: 19 }
+
+          初期のVDOM：（後にReactによって　RealDOMに変換されて画面に表示される）
+              <li key=1>tom---18</li>
+              <li key=2>jerry---19</li>
+
+          更新後のデータ
+              { id: 3, name: "mary", age: 20 }
+              { id: 1, name: "tom", age: 18 },
+              { id: 2, name: "jerry", age: 19 }
+
+          更新後のVDOM：
+              <li key=3>mary---20</li>
+              <li key=1>tom---18</li>
+              <li key=2>jerry---19</li>
+
+    */
+    class Person extends React.Component {
+      state = {
+        persons: [
+          { id: 1, name: "tom", age: 18 },
+          { id: 2, name: "jerry", age: 19 }
+        ]
+      }
+
+      add = () => {
+        const { persons } = this.state
+        const p = { id: persons.length + 1, name: "mary", age: 20 }
+        this.setState({ persons: [p, ...persons] })
+      }
+
+      render() {
+        return (
+
+          <div>
+            <h2>Person Information</h2>
+            <button onClick={this.add}>click me to add new person</button>
+            <h3>indexをkeyとする</h3>
+            <ul>
+              {
+
+                this.state.persons.map(
+                  (personObj, index) => {
+                    return <li key={index}>{personObj.name}---{personObj.age}</li>
+                  }
+                )
+              }
+            </ul>
+            <hr />
+            <hr />
+
+            <h3>idをKeyとする</h3>
+            <ul>
+              {
+                this.state.persons.map(
+                  (personObj, id) => {
+                    return <li key={id}>{personObj.name}---{personObj.age}</li>
+                  }
+                )
+              }
+            </ul>
+          </div>
+
+        )
+      }
+
+
+    }
+
+    // レンダリング
+    ReactDOM.render(<Person />, document.getElementById("test"))
+
+
+  </script>
+</body>
+
+</html>
